@@ -1,16 +1,20 @@
-#DL_DIR ?= "${TOPDIR}/downloads"
+# Standard GDP configuration defaults, inherited by all targets
+
 DISTRO ?= "poky-ivi-systemd"
-MACHINE = "qemux86-64"
-USE_GSTREAMER_1_00="1"
-
-# INCOMPATIBLE_LICENSE ?= "GPLv3"
-
+USE_GSTREAMER_1_00 ?= "1"
+PREFERRED_VERSION_weston ?= "1.9.0"
+PREFERRED_VERSION_wayland-ivi-extension ?= "1.9.1"
 PACKAGE_CLASSES ?= "package_rpm package_ipk"
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
+EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
 USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-PATCHRESOLVE = "noop"
+PATCHRESOLVE ?= "noop"
+LICENSE_FLAGS_WHITELIST  += "commercial"
 
-#
+#INCOMPATIBLE_LICENSE ?= "GPLv3"
+
+# Flag for Faytech Touch Monitor support, '1' will enable kernel driver patch
+#USE_FAYTECH_MONITOR = "1"
+
 # Disk Space Monitoring during the build
 #
 # Monitor the disk space during the build. If there is less that 1GB of space or less
@@ -30,5 +34,3 @@ BB_DISKMON_DIRS = "\
 # track the version of this file when it was generated. This can safely be ignored if
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
-PREFERRED_VERSION_weston = "1.9.0"
-PREFERRED_VERSION_wayland-ivi-extension = "1.9.1"

@@ -3,7 +3,7 @@
 	url = http://github.com/genivi/meta-genivi-dev.git
 [submodule "meta-ivi"]
 	path = meta-ivi
-	url = http://git.yoctoproject.org/git/meta-ivi
+	url = http://github.com/genivi/meta-ivi.git
 [submodule "meta-qt5"]
 	path = meta-qt5
 	url = git://github.com/meta-qt5/meta-qt5.git
@@ -16,3 +16,22 @@
 [submodule "meta-rust"]
 	path = meta-rust
 	url = git://github.com/jmesmon/meta-rust.git
+[submodule "meta-oic"]
+	path = meta-oic
+	url = http://git.yoctoproject.org/git/meta-oic.git
+	branch = 1.0.1
+[submodule "meta-rvi"]
+	path = meta-rvi
+	url = git://github.com/GENIVI/meta-rvi.git
+[submodule "meta-erlang"]
+	path = meta-erlang
+	url = git://github.com/joaohf/meta-erlang.git
+[submodule "meta-raspberrypi"]
+	path = meta-raspberrypi
+	url = git://git.yoctoproject.org/meta-raspberrypi
+[submodule "meta-renesas"]
+	path = meta-renesas
+	url = git://github.com/slawr/meta-renesas.git
+[submodule "meta-intel"]
+	path = meta-intel
+	url = git://git.yoctoproject.org/meta-intel
