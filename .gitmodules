@@ -53,3 +53,6 @@
 [submodule "meta-ivi-renesas"]
 	path = meta-ivi-renesas
 	url = https://github.com/GENIVI/meta-ivi-renesas.git
+[submodule "meta-boot2qt"]
+	path = meta-boot2qt
+	url = git://code.qt.io/yocto/meta-boot2qt.git
