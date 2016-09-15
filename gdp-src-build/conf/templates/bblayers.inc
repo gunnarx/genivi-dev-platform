@@ -30,6 +30,8 @@ BBLAYERS ?= " \
   ${TOPDIR}/../meta-rvi \
   ${TOPDIR}/../meta-browser \
   ${TOPDIR}/../meta-flatpak \
+  ${TOPDIR}/../meta-boot2qt \
+  ${TOPDIR}/../meta-genivi-dev-qtas \
   "
 
 BBLAYERS_NON_REMOVABLE ?= " \
