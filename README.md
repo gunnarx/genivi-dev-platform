@@ -15,7 +15,9 @@ Download an image for your platform below. The current release is GDP 11.
 
 Contributing to GDP
 ----------------------------
-Please see the  [MAINTAINERS](https://github.com/genivi/meta-genivi-dev/blob/master/MAINTAINERS) file for information on contacting them as well as instructions for submitting patches.
+Please see the  [MAINTAINERS](https://github.com/genivi/meta-genivi-dev/blob/master/MAINTAINERS) file for information on contacting them as well as instructions for submitting patches via email.
+NOTE: The *preferred* method is however Pull-Requests within GitHub.
+Please follow the [CONTRIBUTING](https://github.com/genivi/genivi-dev-platform/blob/master/CONTRIBUTING.md) guidelines.
 
 The GENIVI Development Platform project welcomes contributions:
 * Subscribe to the mailing list [here](https://lists.genivi.org/mailman/listinfo/genivi-projects).
