@@ -16,6 +16,7 @@ function setupGitSubmodules() {
 
     local targets=(
         "dragonboard-410c"
+        "imx6qpsabreauto"
         "koelsch"
         "minnowboard"
         "porter"
@@ -24,6 +25,7 @@ function setupGitSubmodules() {
         "raspberrypi2"
         "raspberrypi3"
         "silk")
+
     local supported=(
         "dragonboard-410c"
         "minnowboard"
@@ -93,6 +95,7 @@ function setupGitSubmodules() {
     bsparr["silk"]="meta-renesas"
     bsparr["dragonboard-410c"]="meta-qcom"
     bsparr["r-car-m3-starter-kit"]="meta-linaro renesas-rcar-gen3"
+    bsparr["imx6qpsabreauto"]="NXP-bsp/meta-freescale-distro NXP-bsp/meta-fsl-arm NXP-bsp/meta-fsl-bsp-release NXP-bsp/meta-nxp-genivi"
 
     # This looks somewhat complex but the intention is to clone only needed
     # submodules.  The module list is calculated as : all the submodules we
