@@ -37,6 +37,7 @@ AGENT_STANDARD_DL_DIR="/var/cache/yocto/downloads"
 AGENT_STANDARD_SSTATE_DIR="/var/cache/yocto/sstate"
 AGENT_STANDARD_SGX_LOCATION="/var/go/sgx_bin"
 AGENT_STANDARD_SGX_GEN3_LOCATION="/var/go/sgx_bin_gen3"
+GENIVI_SOURCE_MIRROR="https://docs.projects.genivi.org/releases/yocto_mirror"
 
 # ---- Helper functions ----
 
@@ -72,17 +73,23 @@ stop_immediately() {
   exit 2
 }
 
-append_local_conf() {
+# This function handles also multiple line input, and is reused by
+# append_local_conf (single line) to avoid repetition.
+append_local_conf_cat() {
   LOCAL_CONF="$BASEDIR/gdp-src-build/conf/local.conf"
   if [[ -f "$LOCAL_CONF" ]]; then
-    echo -n "Appending to local.conf: "
-    cat <<EOT | tee -a "$LOCAL_CONF"
-$1
-EOT
+    echo "Appending $1 to local.conf"
+    cat >> "$LOCAL_CONF"
   else
     echo "Fatal: Did not find local.conf where expected"
     stop_immediately
   fi
+}
+
+append_local_conf() {
+  cat <<EOT | append_local_conf_cat "$1"
+$1
+EOT
 }
 
 stage_artifact() {
@@ -128,6 +135,9 @@ define_with_default REUSE_STANDARD_DL_DIR true
 define_with_default REUSE_STANDARD_SSTATE_DIR true
 define_with_default SGX_DRIVERS $AGENT_STANDARD_SGX_LOCATION
 define_with_default SGX_GEN_3_DRIVERS $AGENT_STANDARD_SGX_GEN3_LOCATION
+define_with_default USE_GENIVI_DL_MIRROR_FIRST false
+define_with_default USE_GENIVI_DL_MIRROR_LAST true
+define_with_default PREMIRROR ""
 
 stop_if_failure
 
@@ -271,6 +281,35 @@ fi
 if [[ -n "$PARALLEL_MAKE" ]]; then
   echo $PARALLEL_MAKE | egrep -q '^-j' || PARALLEL_MAKE="-j$PARALLEL_MAKE"
   append_local_conf "PARALLEL_MAKE = \"$PARALLEL_MAKE\""
+fi
+
+if [[ "$USE_GENIVI_DL_MIRROR_FIRST" == "true" ]] ; then
+  cat <<EOT | append_local_conf_cat "PREMIRROR set to GENIVI mirror"
+PREMIRRORS_append = "
+    git://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    http://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    https://.*/.* $GENIVI_SOURCE_MIRROR \\
+    ftp://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    "
+EOT
+fi
+
+if [[ "$USE_GENIVI_DL_MIRROR_LAST" == "true" ]] ; then
+  cat <<EOT | append_local_conf_cat "GENIVI mirror (fallback)"
+MIRRORS_append = "
+    git://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    http://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    https://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    ftp://.*/.* $GENIVI_SOURCE_MIRROR  \\
+    "
+EOT
+fi
+
+if [[ -n "$PREMIRROR" ]] ; then
+  cat <<EOT | append_local_conf_cat "PREMIRROR set to user value \$PREMIRROR"
+     INHERIT += "own-mirrors"
+     SOURCE_MIRROR_URL = "$PREMIRROR"
+EOT
 fi
 
 if [[ "$BUILD_SDK" != "true" ]]; then
