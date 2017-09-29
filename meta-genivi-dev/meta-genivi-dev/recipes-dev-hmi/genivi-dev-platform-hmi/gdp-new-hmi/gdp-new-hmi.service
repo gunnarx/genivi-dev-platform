@@ -1,6 +1,6 @@
 [Unit]
 Description=GENIVI Development Platform HMI
-Requires=dbus.service
+Requires=dbus.service genivi-bluetooth-startup.service
 After=weston.service
 
 [Service]

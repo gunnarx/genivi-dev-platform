@@ -1,0 +1,13 @@
+[Install]
+RequiredBy=smartdevicelink.service
+
+[Unit]
+Description=Genivi bluetooth setup - do some stuff to get bluetooth working
+Before=bluetooth.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/genivi-bluetooth-startup.sh
+Restart=no
+
