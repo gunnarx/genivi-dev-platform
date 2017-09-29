@@ -1,6 +1,6 @@
 #!/bin/sh
 
-/usr/sbin/rfkill unblock 0
+bluetoothctl <<< "power on"
 
 /usr/bin/pactl load-module module-bluetooth-discover
 /usr/bin/pactl load-module module-loopback
