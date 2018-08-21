@@ -1,4 +1,4 @@
-DESCRIPTION = "GDP Development package group"
+DESCRIPTION = "VCIVING project and prerequisites, including -dev packages for on-target installations"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${IVI_COREBASE}/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
@@ -8,25 +8,22 @@ LIC_FILES_CHKSUM[vardepsexclude] += "IVI_COREBASE"
 inherit packagegroup
 
 PACKAGES = "\
-    packagegroup-gdp-dev \
+    packagegroup-gdp-vciving \
     "
 
 ALLOW_EMPTY_${PN} = "1"
 
 IMAGE_INSTALL += "\
-    python-dev \
     python3-dev \
     "
 
 RDEPENDS_${PN} += "\
-    avahi-daemon \
-    cannelloni \
-    cmake \
-    connman-client \
-    git \
-    openssh-sftp-server \
-    python-pip \
+    alsa-dev \
+    espeak \
+    ffmpeg-dev \
+    flac \
+    gstreamer1.0-libav \
+    portaudio-v19-dev \
     python3-pip \
-    udisks2 \
-    udisks2-disk-manager \
     "
+

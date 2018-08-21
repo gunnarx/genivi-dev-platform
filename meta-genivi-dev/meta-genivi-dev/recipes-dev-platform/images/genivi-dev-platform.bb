@@ -10,7 +10,7 @@ EXTRA_IMAGEDEPENDS_remove = "qemu-native qemu-helper-native"
 
 DESCRIPTION = "GENIVI Development Platform image"
 
-PV = "13.0"
+PV = "14.0"
 
 BOOT_SPACE_rpi = "40960"
 
@@ -37,6 +37,8 @@ IMAGE_INSTALL_append = " \
     packagegroup-gdp-sdl \
     packagegroup-gdp-dev \
     packagegroup-gdp-cdl \
+    packagegroup-core-buildessential \
+    packagegroup-gdp-vciving \
     "
 
 IMAGE_INSTALL_append_rcar-gen2 = " \
@@ -47,7 +49,7 @@ IMAGE_INSTALL_append_rcar-gen2 = " \
     "
 
 IMAGE_INSTALL_append_rpi = " \
-	init-ifupdown \
-	packagegroup-base \
-	mesa-megadriver \
-"
+    init-ifupdown \
+    packagegroup-base \
+    mesa-megadriver \
+    "
