@@ -3,7 +3,7 @@ SRCREV = "86f5a365a0b1c4cd96a6344db7137a0440c11f7b"
 LICENSE  = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=9741c346eef56131163e13b9db1241b3"
 
-DEPENDS = "dbus-c++ systemd wayland-ivi-extension qtquick1 qtdeclarative qtbase ivi-logging"
+DEPENDS = "systemd wayland-ivi-extension qtquick1 qtdeclarative qtbase ivi-logging"
 
 RDEPENDS_${PN} += "qtbase qtsvg"
 
